@@ -1,5 +1,5 @@
 ## post_install_grub_options
 # Start post install grub options update
-sed -i 's/^hiddenmenu/#hiddenmenu/g' /etc/grub.conf
-sed -i 's/^timeout=5/timeout=15/g' /etc/grub.conf
+sed -i --follow-symlinks 's/^hiddenmenu/#hiddenmenu/g' /etc/grub.conf
+sed -i --follow-symlinks 's/^timeout=5/timeout=15/g' /etc/grub.conf
 # End post install grub options update
