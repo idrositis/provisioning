@@ -1,0 +1,27 @@
+## disk_partitioning
+## Specific disk-layout per cluster
+##
+#if $hostname.startswith("testks")
+# TESTKS
+## Small test layout for local VM
+clearpart --drives=sda --initlabel
+part /boot --size=256 --asprimary --ondisk=sda
+part pv.01 --size=6000 --grow --asprimary --ondisk=sda
+volgroup vg0 pv.01
+logvol / --vgname=vg0 --size=3000 --name=root
+logvol /home --vgname=vg0 --size=1000 --name=home
+logvol swap --vgname=vg0 --size=512 --name=swap
+#else
+# DEFAULT
+## partition sda containing a 1024MB /boot plus a LVM volume group containing
+## everything else.
+## The LV will not use all the available space, the rest is meant to be
+## allocated depending on what the machine is used for.
+clearpart --drives=sda --initlabel
+part /boot --size=1024 --asprimary --ondisk=sda
+part pv.01 --size=1000 --grow --asprimary --ondisk=sda
+volgroup vg0 pv.01
+logvol / --vgname=vg0 --size=15000 --name=root
+logvol /home --vgname=vg0 --size=5000 --name=home
+logvol swap --vgname=vg0 --size=4096 --name=swap
+#end if

@@ -1,0 +1,14 @@
+## post_install_network_config
+
+# Start post install network config
+#if $static == True:
+# STATIC IP: remove ZEROCONF and add global gateway
+/bin/grep -qs '^NOZEROCONF' /etc/sysconfig/network || echo 'NOZEROCONF=yes' >> /etc/sysconfig/network
+/bin/grep -qs "^GATEWAY" /etc/sysconfig/network || echo "GATEWAY=$gateway" >> /etc/sysconfig/network
+#end if
+
+# No IPv6
+/bin/grep -qs '^NETWORKING_IPV6' /etc/sysconfig/network || echo 'NETWORKING_IPV6=no' >> /etc/sysconfig/network
+# Make sure NetworkManager is not messing around with IFs
+sed -i 's/NM_CONTROLLED="yes"/NM_CONTROLLED="no"/g' /etc/sysconfig/network-scripts/ifcfg-eth*
+# End post install network config

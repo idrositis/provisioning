@@ -1,0 +1,6 @@
+## skip_dhcp_rpms_on_static
+#if $static == True:
+# STATIC IP: skip installing DHCP-related RPMs
+-dhclient
+-dhcp-common
+#end if

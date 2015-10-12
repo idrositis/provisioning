@@ -1,0 +1,63 @@
+#include "variables"
+#def SNIPPET($file)
+  #include $snippet_dir + $file
+#end def
+## RHEL/CentOS 6.x Kickstart File
+#platform=x86, AMD64, or Intel EM64T
+# System authorization information
+auth --useshadow  --enablemd5
+# System bootloader configuration
+bootloader --location=mbr
+# Partition clearing information
+clearpart --all --initlabel
+# Use text mode install
+text
+# Run the Setup Agent on first boot
+firstboot --disable
+# System keyboard
+keyboard us
+# System language
+lang en_US
+# Network information
+$SNIPPET('network_config')
+# Reboot after installation
+reboot
+# Users & passwords
+$SNIPPET('setup_users_and_passwords')
+# Do not configure the X Window System
+skipx
+# System timezone
+timezone GMT
+# Install OS instead of upgrade
+install
+# Clear the Master Boot Record
+zerombr
+# Check for customized disk partitions
+$SNIPPET('disk_partitioning')
+
+%pre
+$SNIPPET('log_ks_pre')
+$SNIPPET('kickstart_start')
+$SNIPPET('pre_install_network_config')
+
+%packages --ignoremissing
+#ignore "func_install_if_enabled"
+# Add these
+ntp
+wget
+# Make sure we skip these
+$SNIPPET('skip_dhcp_rpms_on_static')
+-cups
+-mlocate
+
+%post
+$SNIPPET('log_ks_post')
+$SNIPPET('post_install_grub_options')
+$SNIPPET('post_install_kernel_options')
+$SNIPPET('post_install_network_config')
+
+# Enable post-install boot notification
+##include "post_anamon"
+# Start final steps
+##include "kickstart_done"
+# End final steps

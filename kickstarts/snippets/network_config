@@ -1,0 +1,8 @@
+## network_config
+#if $static == False:
+# DHCP
+network --device=$iname --onboot=on --bootproto=dhcp
+#else
+# STATIC IP
+network --device=$iname --onboot=on --bootproto=static --ip=$ip --netmask=$netmask --hostname=$hostname --gateway=$gateway
+#end if

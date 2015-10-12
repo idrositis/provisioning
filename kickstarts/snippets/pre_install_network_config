@@ -1,0 +1,4 @@
+## pre_install_network_config
+
+#set $devfile   = "/etc/sysconfig/network-scripts/ifcfg-" + $iname
+#set $routefile = "/etc/sysconfig/network-scripts/route-" + $iname

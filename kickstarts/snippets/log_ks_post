@@ -1,0 +1,4 @@
+## log_ks_post
+# Redirect POST logs on ks-post.log
+set -x -v
+exec 1>/root/ks-post.log 2>&1
