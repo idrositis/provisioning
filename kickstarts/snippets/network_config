@@ -4,5 +4,6 @@
 network --device=$iname --onboot=on --hostname=$hostname --bootproto=dhcp
 #else
 # STATIC IP
-network --device=$iname --onboot=on --hostname=$hostname --bootproto=static --ip=$ip --netmask=$netmask --gateway=$gateway
+## For multiple DNS servers the nameserver option need to be amended
+network --device=$iname --onboot=on --hostname=$hostname --bootproto=static --ip=$ip --netmask=$netmask --gateway=$gateway --nameserver=$name_servers[0]
 #end if

@@ -12,6 +12,7 @@
 #set global $netmask = '255.255.255.0'
 #set global $type = 'static'
 #set global $gateway = '192.168.1.1'
+#set global $name_servers = ( '192.168.1.254', '192.168.1.1' )
 
 #set global $default_password_root_crypted = '$6$dDJNloTL$J1h8Tb/jGmhDGQfndHP1bnF/exoxhmNkp8N1D76V83qo7PpFOd9Q/iTxPn7CkDON/nJOHE2sL4rCOBaMLn8bg.'
 #set global $default_password_user_crypted = '$6$tuvlrV3f$UBeMUEhkgWPNfyMJTyIm5hESUVSoHJmOwVV9/LME1qNRpkWub7ueuKlZibPurTVyaoxoH3SHOPzuhZmVtj2fY1'
