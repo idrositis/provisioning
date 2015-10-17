@@ -13,6 +13,8 @@ If this is the case, certain variables (e.g. hostname, network configuration, et
 layer, which makes the actual [kickstart files](https://en.wikipedia.org/wiki/Kickstart_%28Linux%29)
 quite abstract and almost impossible to render outside that specific provisioning environment.
 
+This is possible through [Cheetah](http://www.cheetahtemplate.org/) template engine!
+
 The aim in this repository is exactly that: to help rendering [kickstart files](https://en.wikipedia.org/wiki/Kickstart_%28Linux%29)
 by adding the missing variables and altering as little as possible.
 
@@ -35,3 +37,4 @@ $ ../tools/build_ks.sh centos6.tml
 ## References
 
  - [RHEL 6 Kickstart Guide](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-options.html)
+ - [Cheetah Users' Guide](http://www.cheetahtemplate.org/docs/users_guide_html)
