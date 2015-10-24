@@ -18,18 +18,20 @@ This is possible through [Cheetah](http://www.cheetahtemplate.org/) template eng
 The aim in this repository is exactly that: to help rendering [kickstart files](https://en.wikipedia.org/wiki/Kickstart_%28Linux%29)
 by adding the missing variables and altering as little as possible.
 
+
 ## Build CentOS/RHEL 6.x Kickstart
 
-Edit the `variables` file and run `build_ks.sh` with the kickstart template:
+Create your specific `variables` file out of the template one and run `build_ks.py` with the kickstart
+template, as below:
 ~~~
-$ ../tools/build_ks.sh centos6.tml
+$ ../tools/build_ks.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webServer1.ks
 ~~~
 
 
 ## TODOs
 
- - use `variables` file as parameter for build script
- - omit `#include "variables"` and `SNIPPET()` function definition in the actual [kickstart file](https://en.wikipedia.org/wiki/Kickstart_%28Linux%29)
+ - tools  : Update `build_ks.sh` to use STDIN for `cheetah` binary
+   (i.e. `cat functions.tmpl variables-webServer1.tmpl centos6.tmpl | cheetah fill --flat - > centos6_webServer1.ks`)
  - centos6: Disable IPv6 as an option 
  - centos6: Add hostname on `/etc/hosts`
 
