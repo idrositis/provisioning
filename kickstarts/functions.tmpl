@@ -1,0 +1,6 @@
+## Common function
+##
+## Fake SNIPPET() function to avoid changing cobbler kickstart files
+#def SNIPPET($file)
+  #include $snippet_dir + $file
+#end def
