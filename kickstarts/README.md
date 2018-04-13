@@ -10,9 +10,9 @@ RHEL/CentOS 6.x &amp; 7.x installations.
 ## Quick-Start
 
  1. Create your specific `variables` file out of the template
- 2. Run `build_ks.py`, selecting one of the CentOS templates, as below:
+ 2. Run `ks_build.py`, selecting one of the CentOS templates, as below:
     ~~~
-    $ ../tools/build_ks.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webServer1.ks
+    $ ../tools/ks_build.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webServer1.ks
     ~~~
  3. Copy the kickstart file on a floppy-disk (image) as `ks.cfg`
  4. Add the floppy-disk on you server
