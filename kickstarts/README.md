@@ -23,6 +23,7 @@ RHEL/CentOS 6.x &amp; 7.x installations.
 
 ## References
 
+ - [CentOS Community Kickstarts](https://github.com/CentOS/Community-Kickstarts)
  - [RHEL 7 Kickstart Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/installation_guide/chap-kickstart-installations)
  - [RHEL 6 Kickstart Guide](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-options.html)
  - [Cheetah Users' Guide](http://www.cheetahtemplate.org/docs/users_guide_html)
