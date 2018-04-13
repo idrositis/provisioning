@@ -1,5 +1,8 @@
 #!/bin/bash
 # Script to build kickstart files out of a template using cheetah
+#
+FILE_VARIABLES="variables"
+FILE_FUNCTIONS="functions.tmpl"
 
 # cheetah must be reachable
 which cheetah >/dev/null || {
@@ -21,7 +24,7 @@ function list_possible_tmpl_files()
 # Argument check
 if [ -z "$1" ]; then
   echo "Script to build kickstart files for RHEL/CentOS unattended installations"
-  echo "Machine configuration is taken from the 'variables' file"
+  echo "Machine configuration is taken from the '$FILE_VARIABLES' file"
   echo
   echo "Usage: ${0##*/} <kickstart_template_file.tmpl>"
   echo "  eg.: ${0##*/} centos6[.tmpl]"
@@ -31,8 +34,8 @@ if [ -z "$1" ]; then
 fi
 
 # File with variables should be present
-if [ ! -r "variables" ]; then
-  echo "[ERROR] File 'variables' is missing!"
+if [ ! -r "$FILE_VARIABLES" ]; then
+  echo "[ERROR] File '$FILE_VARIABLES' is missing!"
   echo "[ERROR] Either create a new one, or copy and modify one of the existing ones"
   exit 1
 fi
@@ -49,6 +52,7 @@ if [ ! -r "$filename" ]; then
 fi
 
 # Main
-cheetah fill --iext="tmpl" --flat "$filename" --oext=ks --nobackup
+cat "$FILE_VARIABLES" "$FILE_FUNCTIONS" "$filename" | \
+  cheetah fill --iext="tmpl" --flat --oext=ks --nobackup -
 
 exit $?

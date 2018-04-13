@@ -3,8 +3,12 @@
 Create your [kickstart](http://fedoraproject.org/wiki/Anaconda/Kickstart) files for automated/unattended
 RHEL/CentOS 6.x &amp; 7.x installations.
 
-> **NOTE**: For the network interfaces, the old naming convention is used. Which makes the network
-> interfaces end up with names *eth0*, *eth1*, etc.
+> **NOTE**
+> The below considerations have been made for the kickstart templates:
+>  - Old naming convention for the network interfaces (*eth0*, *eth1*, etc.)
+>  - Special kernel parameters, like non-blanking console
+>
+> You might need to amend them.
 
 
 ## Quick-Start

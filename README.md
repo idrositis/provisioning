@@ -30,8 +30,11 @@ $ ../tools/ks_build.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webSe
 
 ## TODOs
 
- - tools  : Update `ks_build.sh` to use STDIN for `cheetah` binary
-   (i.e. `cat functions.tmpl variables-webServer1.tmpl centos6.tmpl | cheetah fill --flat - > centos6_webServer1.ks`)
+ - Produce an output kickstart using the hostname from the `variables` file
+   eg. `<template_hostname>`, where `<hostname>` from:
+~~~
+grep hostname variables|egrep -v '^##'|tail -n1|cut -d"'" -f2|cut -d'.' -f1
+~~~
  - centos6: Disable IPv6 as an option 
  - centos6: Add hostname on `/etc/hosts`
 
