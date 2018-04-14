@@ -4,11 +4,15 @@ Create your [kickstart](http://fedoraproject.org/wiki/Anaconda/Kickstart) files 
 RHEL/CentOS 6.x &amp; 7.x installations.
 
 > **NOTE**
+>
 > The below considerations have been made for the kickstart templates:
+>
 >  - Old naming convention for the network interfaces (*eth0*, *eth1*, etc.)
+>  - Hostnanes starting with `test` are specially treated, mainly for testing purposes
+>    eg. regarding partition sizes
 >  - Special kernel parameters, like non-blanking console
 >
-> You might need to amend them.
+> You might need to amend them, to accomodate your needs.
 
 
 ## Quick-Start
@@ -16,7 +20,7 @@ RHEL/CentOS 6.x &amp; 7.x installations.
  1. Create your specific `variables` file out of the template
  2. Run `ks_build.py`, selecting one of the CentOS templates, as below:
     ~~~
-    $ ../tools/ks_build.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webServer1.ks
+    $ ../tools/ks_build.py -v variables.webServer1 centos6.tmpl > centos6_webServer1.ks
     ~~~
  3. Copy the kickstart file on a floppy-disk (image) as `ks.cfg`
  4. Add the floppy-disk on you server

@@ -24,7 +24,7 @@ by adding the missing variables and altering as little as possible.
 Create your specific `variables` file out of the template one and run `ks_build.py` with the kickstart
 template, as below:
 ~~~
-$ ../tools/ks_build.py -v variables-webServer1.tmpl centos6.tmpl > centos6_webServer1.ks
+$ ../tools/ks_build.py -v variables.webServer1 centos6.tmpl > centos6_webServer1.ks
 ~~~
 
 
