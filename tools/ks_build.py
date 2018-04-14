@@ -30,6 +30,7 @@ import os
 import sys
 
 DEFAULT_FUNCTIONS_FILE = "functions.tmpl"
+DEFAULT_VARIABLE_FILE  = "variables"
 
 def main():
 
@@ -41,9 +42,9 @@ def main():
                       help='kickstart template file')
 
   parser.add_argument('-f', '--function_file', type=str, default=DEFAULT_FUNCTIONS_FILE,
-                      help='File with function definitions (default: "{}")'.format(DEFAULT_FUNCTIONS_FILE))
-  parser.add_argument('-v', '--variable_file', type=str,
-                      help="Variable file")
+                      help='Common functions (default: "{}")'.format(DEFAULT_FUNCTIONS_FILE))
+  parser.add_argument('-v', '--variable_file', type=str, default=DEFAULT_VARIABLE_FILE,
+                      help='Host-specific variables; YOU SHOULD PROVIDE THAT FILE (default: "{}")'.format(DEFAULT_VARIABLE_FILE))
 
   # Read arguments
   args = parser.parse_args()
@@ -57,11 +58,16 @@ def main():
   handle_ks = open(ks_template, 'r')
   ks_data = handle_ks.read()
 
-  # Possibly prepend function and variable file
+  # Prepend function and variable files
   # NOTE: the order does matter!-)
   for xFile in variable_file, function_file:
     if xFile:
-      handle = open(xFile, 'r')
+      try:
+        handle = open(xFile, 'r')
+      except IOError:
+        error_msg('Cannot access file "{}"!'.format(xFile))
+        return 1
+
       data = handle.read()
       template_string += data
 
@@ -73,6 +79,6 @@ def main():
   # Output the template to STDOUT
   print(rendered_ks)
 
-
+# Main
 if __name__ == "__main__":
   sys.exit(main())
